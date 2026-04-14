@@ -63,7 +63,7 @@ export function Hero() {
         >
           <a
             href="/contact"
-            className="inline-flex items-center gap-2 px-10 py-4 border border-white/20 text-white font-headline text-[12px] font-medium uppercase tracking-[0.15em] rounded-full hover:bg-white/10 hover:border-white/30 transition-all"
+            className="inline-flex items-center gap-2 px-10 py-4 bg-white text-surface font-headline text-[12px] font-semibold uppercase tracking-[0.15em] rounded-full hover:bg-white/90 transition-colors"
           >
             Get in touch
           </a>
