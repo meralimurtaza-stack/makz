@@ -5,21 +5,21 @@ import { motion } from "framer-motion";
 const cards = [
   {
     num: "01",
-    label: "REASONING",
-    title: "Failure-driven design",
-    text: "We target scenarios where models produce plausible but incorrect decisions.",
+    label: "SCORING",
+    title: "Rubric-based scoring",
+    text: "Every response is graded against structured, JSON-formatted rubrics with weighted criteria. Not subjective pass/fail — quantified scores across reasoning, extraction, safety, and style. Replicable by any independent reviewer.",
   },
   {
     num: "02",
-    label: "ENVIRONMENT",
-    title: "Real clinical complexity",
-    text: "Cases include ambiguity, conflicting signals, and time-sensitive decision-making.",
+    label: "TESTING",
+    title: "Cross-model stress testing",
+    text: "We scrape responses from Claude, GPT, and Gemini for every prompt. We only deliver tasks where all major models perform poorly. If one model gets it right, the prompt isn't hard enough.",
   },
   {
     num: "03",
-    label: "VERIFICATION",
-    title: "Structured evaluation",
-    text: "Each task includes expert-built rubrics focused on reasoning quality and safety.",
+    label: "QC",
+    title: "Clinical QC pipeline",
+    text: "Peer review by a second clinician. Structural QC by our evaluation lead. Model-alignment debugging. Final sign-off. Each task is touched by at least three people before delivery.",
   },
 ];
 
