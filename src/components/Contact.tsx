@@ -7,19 +7,19 @@ const cards = [
     title: "See our work",
     text: "We'll share a real evaluation task — prompt, rubric, cross-model scores — so you can judge the quality yourself.",
     cta: "Request a sample",
-    href: "mailto:info@makztalent.com?subject=Sample%20dataset%20request",
+    href: "/contact?reason=sample",
   },
   {
     title: "Run a pilot",
     text: "3 weeks. 5-10 high-signal tasks targeting your model's failure modes. Board-certified clinicians. Structured rubrics. No long-term commitment.",
     cta: "Discuss a pilot",
-    href: "mailto:info@makztalent.com?subject=Pilot%20discussion",
+    href: "/contact?reason=pilot",
   },
   {
     title: "Talk to Ali",
     text: "20-minute call to discuss your evaluation needs and whether MAKZ is the right fit.",
     cta: "Book a call",
-    href: "mailto:info@makztalent.com?subject=Introductory%20call",
+    href: "/contact?reason=call",
   },
 ];
 

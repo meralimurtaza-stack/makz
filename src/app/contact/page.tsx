@@ -1,18 +1,136 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { motion } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 
-export default function ContactPage() {
+const reasonMessages: Record<string, string> = {
+  sample:
+    "I'd like to request a sample evaluation task — prompt, rubric, and cross-model scores.",
+  pilot:
+    "I'm interested in discussing a pilot — 5-10 high-signal tasks targeting our model's failure modes.",
+  call:
+    "I'd like to schedule a 20-minute introductory call to discuss our evaluation needs.",
+};
+
+function ContactForm() {
+  const searchParams = useSearchParams();
+  const reason = searchParams.get("reason") || "";
   const [submitted, setSubmitted] = useState(false);
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (reason && reasonMessages[reason]) {
+      setMessage(reasonMessages[reason]);
+    }
+  }, [reason]);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSubmitted(true);
   }
 
+  if (submitted) {
+    return (
+      <div className="bg-surface-container border border-white/[0.06] p-10 md:p-12 flex flex-col items-center justify-center min-h-[400px] text-center">
+        <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mb-6">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            className="text-accent"
+          >
+            <path
+              d="M5 13l4 4L19 7"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+        <h3 className="font-headline text-2xl text-white font-bold mb-3">
+          Thank you
+        </h3>
+        <p className="text-text-body max-w-sm">
+          We&apos;ve received your message and will get back to you shortly.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="bg-surface-container border border-white/[0.06] p-8 md:p-10 space-y-6"
+    >
+      <div>
+        <label className="block font-mono text-[10px] text-text-muted uppercase tracking-[0.25em] mb-2">
+          Name
+        </label>
+        <input
+          type="text"
+          required
+          className="w-full bg-surface-lowest border border-white/[0.06] px-4 py-3 text-white text-sm font-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent/50 transition-colors"
+          placeholder="Your name"
+        />
+      </div>
+
+      <div>
+        <label className="block font-mono text-[10px] text-text-muted uppercase tracking-[0.25em] mb-2">
+          Email
+        </label>
+        <input
+          type="email"
+          required
+          className="w-full bg-surface-lowest border border-white/[0.06] px-4 py-3 text-white text-sm font-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent/50 transition-colors"
+          placeholder="you@company.com"
+        />
+      </div>
+
+      <div>
+        <label className="block font-mono text-[10px] text-text-muted uppercase tracking-[0.25em] mb-2">
+          Company
+          <span className="text-text-muted/40 ml-2 normal-case tracking-normal">
+            optional
+          </span>
+        </label>
+        <input
+          type="text"
+          className="w-full bg-surface-lowest border border-white/[0.06] px-4 py-3 text-white text-sm font-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent/50 transition-colors"
+          placeholder="Your company"
+        />
+      </div>
+
+      <div>
+        <label className="block font-mono text-[10px] text-text-muted uppercase tracking-[0.25em] mb-2">
+          Message
+        </label>
+        <textarea
+          required
+          rows={5}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          className="w-full bg-surface-lowest border border-white/[0.06] px-4 py-3 text-white text-sm font-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent/50 transition-colors resize-none"
+          placeholder="Tell us about your project or what you're looking for..."
+        />
+      </div>
+
+      <button
+        type="submit"
+        className="w-full py-4 bg-white text-surface font-headline text-[12px] font-semibold uppercase tracking-[0.15em] rounded-full hover:bg-white/90 transition-colors"
+      >
+        Send message
+      </button>
+    </form>
+  );
+}
+
+export default function ContactPage() {
   return (
     <main className="bg-surface min-h-screen">
       <Navigation />
@@ -34,7 +152,6 @@ export default function ContactPage() {
             </p>
 
             <div className="space-y-6">
-              {/* Email */}
               <div>
                 <div className="font-mono text-[10px] text-text-muted uppercase tracking-[0.25em] mb-2">
                   Email
@@ -47,7 +164,6 @@ export default function ContactPage() {
                 </a>
               </div>
 
-              {/* Response time */}
               <div>
                 <div className="font-mono text-[10px] text-text-muted uppercase tracking-[0.25em] mb-2">
                   Response time
@@ -65,101 +181,9 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            {submitted ? (
-              <div className="bg-surface-container border border-white/[0.06] p-10 md:p-12 flex flex-col items-center justify-center min-h-[400px] text-center">
-                <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mb-6">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="text-accent"
-                  >
-                    <path
-                      d="M5 13l4 4L19 7"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-                <h3 className="font-headline text-2xl text-white font-bold mb-3">
-                  Thank you
-                </h3>
-                <p className="text-text-body max-w-sm">
-                  We&apos;ve received your message and will get back to you
-                  shortly.
-                </p>
-              </div>
-            ) : (
-              <form
-                onSubmit={handleSubmit}
-                className="bg-surface-container border border-white/[0.06] p-8 md:p-10 space-y-6"
-              >
-                {/* Name */}
-                <div>
-                  <label className="block font-mono text-[10px] text-text-muted uppercase tracking-[0.25em] mb-2">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    className="w-full bg-surface-lowest border border-white/[0.06] px-4 py-3 text-white text-sm font-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent/50 transition-colors"
-                    placeholder="Your name"
-                  />
-                </div>
-
-                {/* Email */}
-                <div>
-                  <label className="block font-mono text-[10px] text-text-muted uppercase tracking-[0.25em] mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    className="w-full bg-surface-lowest border border-white/[0.06] px-4 py-3 text-white text-sm font-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent/50 transition-colors"
-                    placeholder="you@company.com"
-                  />
-                </div>
-
-                {/* Company */}
-                <div>
-                  <label className="block font-mono text-[10px] text-text-muted uppercase tracking-[0.25em] mb-2">
-                    Company
-                    <span className="text-text-muted/40 ml-2 normal-case tracking-normal">
-                      optional
-                    </span>
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full bg-surface-lowest border border-white/[0.06] px-4 py-3 text-white text-sm font-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent/50 transition-colors"
-                    placeholder="Your company"
-                  />
-                </div>
-
-                {/* Message */}
-                <div>
-                  <label className="block font-mono text-[10px] text-text-muted uppercase tracking-[0.25em] mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    required
-                    rows={5}
-                    className="w-full bg-surface-lowest border border-white/[0.06] px-4 py-3 text-white text-sm font-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent/50 transition-colors resize-none"
-                    placeholder="Tell us about your project or what you're looking for..."
-                  />
-                </div>
-
-                {/* Submit */}
-                <button
-                  type="submit"
-                  className="w-full py-4 bg-white text-surface font-headline text-[12px] font-semibold uppercase tracking-[0.15em] rounded-full hover:bg-white/90 transition-colors"
-                >
-                  Send message
-                </button>
-              </form>
-            )}
+            <Suspense fallback={null}>
+              <ContactForm />
+            </Suspense>
           </motion.div>
         </div>
       </section>
