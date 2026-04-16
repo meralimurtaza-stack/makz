@@ -18,79 +18,127 @@ export function WhyMakz() {
           </h2>
         </motion.div>
 
-        {/* Bento grid */}
-        <div className="grid md:grid-cols-4 gap-4">
-          {/* Quality — large card, 2 cols */}
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* Quality Above All */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0 }}
-            className="md:col-span-2 bg-surface-container p-10 md:p-12 flex flex-col justify-between gap-8 border border-white/[0.06] hover:bg-surface-high/40 transition-colors min-h-[260px]"
+            className="md:col-span-2 bg-surface-container p-10 md:p-12 border border-white/[0.06] hover:bg-surface-high/40 transition-colors"
           >
-            <div className="flex justify-between items-start">
-              <h3 className="font-headline text-xl text-white uppercase font-bold tracking-tight">
-                Quality above all
-              </h3>
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                className="text-accent flex-shrink-0"
-              >
-                <path
-                  d="M12 2L13.09 8.26L18 6L14.74 10.91L21 12L14.74 13.09L18 18L13.09 15.74L12 22L10.91 15.74L6 18L9.26 13.09L3 12L9.26 10.91L6 6L10.91 8.26L12 2Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-            <p className="text-text-body text-base leading-relaxed max-w-md opacity-80">
-              We prioritise signal over scale — every dataset is designed to
-              measurably improve model performance.
+            <h3 className="font-headline text-xl text-white uppercase font-bold tracking-tight mb-6">
+              Quality Above All
+            </h3>
+            <p className="text-text-body text-sm leading-relaxed mb-4">
+              As models improve, the bottleneck is no longer data volume — it&apos;s
+              whether the data actually exposes where models fail.
+            </p>
+            <p className="text-text-body text-sm leading-relaxed mb-4">
+              We design datasets that go beyond textbook scenarios and pattern
+              matching. Our focus is on:
+            </p>
+            <ul className="text-text-body text-sm leading-relaxed mb-4 space-y-1.5 ml-1">
+              <li className="flex items-start gap-2">
+                <span className="text-accent mt-1.5 w-1 h-1 rounded-full bg-accent flex-shrink-0" />
+                real-world clinical ambiguity
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-accent mt-1.5 w-1 h-1 rounded-full bg-accent flex-shrink-0" />
+                incomplete and conflicting information
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-accent mt-1.5 w-1 h-1 rounded-full bg-accent flex-shrink-0" />
+                edge cases and failure modes
+              </li>
+            </ul>
+            <p className="text-text-body text-sm leading-relaxed mb-2">
+              Every line of data is built to test reasoning, not recall — and
+              ultimately answer one question:
+            </p>
+            <p className="text-accent-soft text-sm font-medium">
+              Does this make the model better?
             </p>
           </motion.div>
 
-          {/* Domain experience — 1 col */}
+          {/* Deep Experience */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="md:col-span-2 bg-surface-high p-10 flex flex-col justify-center gap-4 border border-white/[0.06] min-h-[260px]"
+            className="bg-surface-high p-10 md:p-12 border border-white/[0.06]"
           >
-            <div className="text-6xl font-headline font-bold text-accent/30">
-              6+
-            </div>
-            <div>
-              <h3 className="font-headline text-base text-white uppercase font-bold mb-2">
-                Deep domain experience
-              </h3>
-              <p className="font-mono text-[10px] text-text-muted uppercase tracking-widest leading-relaxed">
-                6+ years working across healthcare, AI, and clinical operations.
-              </p>
-            </div>
+            <h3 className="font-headline text-xl text-white uppercase font-bold tracking-tight mb-6">
+              Deep Experience in Healthtech &amp; AI
+            </h3>
+            <p className="text-text-body text-sm leading-relaxed mb-4">
+              We&apos;ve spent over 6 years working at the intersection of
+              healthcare and AI.
+            </p>
+            <p className="text-text-body text-sm leading-relaxed mb-4">
+              This includes:
+            </p>
+            <ul className="text-text-body text-sm leading-relaxed mb-4 space-y-1.5 ml-1">
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 w-1 h-1 rounded-full bg-accent flex-shrink-0" />
+                supplying clinicians into healthtech and AI environments
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 w-1 h-1 rounded-full bg-accent flex-shrink-0" />
+                working closely with how models are trained, evaluated, and
+                improved
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 w-1 h-1 rounded-full bg-accent flex-shrink-0" />
+                understanding where models succeed — and more importantly, where
+                they break
+              </li>
+            </ul>
+            <p className="text-text-body text-sm leading-relaxed">
+              We don&apos;t approach this as a data vendor, but as a partner
+              focused on improving real-world model performance.
+            </p>
           </motion.div>
 
-          {/* Clinician network — fills remaining space */}
+          {/* Clinician Network */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-4 bg-surface-container p-10 md:p-12 flex flex-col md:flex-row md:items-center gap-6 border border-white/[0.06] hover:bg-surface-high/40 transition-colors"
+            className="bg-surface-container p-10 md:p-12 border border-white/[0.06] hover:bg-surface-high/40 transition-colors"
           >
-            <div className="flex-1">
-              <h3 className="font-headline text-xl text-white uppercase mb-4 font-bold tracking-tight">
-                Clinician network
-              </h3>
-              <p className="text-text-body leading-relaxed opacity-80 max-w-lg">
-                Access to 10,000+ clinicians, including those with experience in
-                frontier AI training and evaluation.
-              </p>
-            </div>
+            <h3 className="font-headline text-xl text-white uppercase font-bold tracking-tight mb-6">
+              10,000+ Clinician Talent Pool
+            </h3>
+            <p className="text-text-body text-sm leading-relaxed mb-4">
+              We have built a network of over 10,000 clinicians, including
+              specialists across key domains such as oncology, cardiology, and
+              paediatrics.
+            </p>
+            <p className="text-text-body text-sm leading-relaxed mb-4">
+              Many of our clinicians:
+            </p>
+            <ul className="text-text-body text-sm leading-relaxed mb-4 space-y-1.5 ml-1">
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 w-1 h-1 rounded-full bg-accent flex-shrink-0" />
+                have experience working with frontier AI systems
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 w-1 h-1 rounded-full bg-accent flex-shrink-0" />
+                understand evaluation frameworks and model behaviour
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 w-1 h-1 rounded-full bg-accent flex-shrink-0" />
+                can contribute beyond annotation into reasoning, critique, and
+                refinement
+              </li>
+            </ul>
+            <p className="text-text-body text-sm leading-relaxed">
+              This allows us to deliver high-quality, expert-driven data at
+              speed — without compromising on depth.
+            </p>
           </motion.div>
         </div>
       </div>
