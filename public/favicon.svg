@@ -1,0 +1,11 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Filled blue rounded square background -->
+  <rect x="0" y="0" width="32" height="32" rx="6" fill="#4d8eff"/>
+  <!-- Crosshair lines - white -->
+  <line x1="16" y1="3" x2="16" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <line x1="16" y1="21" x2="16" y2="29" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <line x1="3" y1="16" x2="11" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <line x1="21" y1="16" x2="29" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <!-- White centre dot -->
+  <circle cx="16" cy="16" r="3" fill="white"/>
+</svg>

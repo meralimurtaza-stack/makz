@@ -24,6 +24,11 @@ export const metadata: Metadata = {
   title: "MAKZ | Healthcare AI Evaluation Data",
   description:
     "High-signal datasets designed to expose real-world failure modes in clinical AI reasoning. We find where healthcare AI breaks.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
   openGraph: {
     title: "MAKZ | Healthcare AI Evaluation Data",
     description:
