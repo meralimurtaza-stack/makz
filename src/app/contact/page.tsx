@@ -6,11 +6,40 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 
 export default function ContactPage() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
+  const [message, setMessage] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    setError("");
+    setSubmitting(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, company, message, website }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.ok) {
+        setError(data.error || "Something went wrong. Please try again.");
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setError("Failed to send. Please check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -97,6 +126,20 @@ export default function ContactPage() {
                 onSubmit={handleSubmit}
                 className="bg-surface-container border border-white/[0.06] p-8 md:p-10 space-y-6"
               >
+                {/* Honeypot — hidden from real users */}
+                <div className="absolute opacity-0 h-0 overflow-hidden" aria-hidden="true">
+                  <label htmlFor="website">Website</label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                  />
+                </div>
+
                 {/* Name */}
                 <div>
                   <label className="block font-mono text-[10px] text-text-muted uppercase tracking-[0.25em] mb-2">
@@ -104,7 +147,10 @@ export default function ContactPage() {
                   </label>
                   <input
                     type="text"
+                    name="name"
                     required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     className="w-full bg-surface-lowest border border-white/[0.06] px-4 py-3 text-white text-sm font-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent/50 transition-colors"
                     placeholder="Your name"
                   />
@@ -117,7 +163,10 @@ export default function ContactPage() {
                   </label>
                   <input
                     type="email"
+                    name="email"
                     required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="w-full bg-surface-lowest border border-white/[0.06] px-4 py-3 text-white text-sm font-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent/50 transition-colors"
                     placeholder="you@company.com"
                   />
@@ -133,6 +182,9 @@ export default function ContactPage() {
                   </label>
                   <input
                     type="text"
+                    name="company"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
                     className="w-full bg-surface-lowest border border-white/[0.06] px-4 py-3 text-white text-sm font-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent/50 transition-colors"
                     placeholder="Your company"
                   />
@@ -144,19 +196,30 @@ export default function ContactPage() {
                     Message
                   </label>
                   <textarea
+                    name="message"
                     required
                     rows={5}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     className="w-full bg-surface-lowest border border-white/[0.06] px-4 py-3 text-white text-sm font-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent/50 transition-colors resize-none"
                     placeholder="Tell us about your project or what you're looking for..."
                   />
                 </div>
 
+                {/* Error message */}
+                {error && (
+                  <div className="text-red-400 text-sm font-body">
+                    {error}
+                  </div>
+                )}
+
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="w-full py-4 bg-white text-surface font-headline text-[12px] font-semibold uppercase tracking-[0.15em] rounded-full hover:bg-white/90 transition-colors"
+                  disabled={submitting}
+                  className="w-full py-4 bg-white text-surface font-headline text-[12px] font-semibold uppercase tracking-[0.15em] rounded-full hover:bg-white/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send message
+                  {submitting ? "Sending..." : "Send message"}
                 </button>
               </form>
             )}
