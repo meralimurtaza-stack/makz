@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://www.makztalent.com/sitemap.xml',
+    sitemap: 'https://makztalent.com/sitemap.xml',
   }
 }
